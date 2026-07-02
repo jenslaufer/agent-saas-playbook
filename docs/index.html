@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agent SaaS Playbook — validate an agent business before you build it</title>
+<meta name="description" content="Greg Isenberg's 'AI Agents are the new SaaS' playbook as a free installable skill for Claude Code and OpenAI Codex. Score the workflow, spec the agent, anchor pricing against labor cost — before you build." />
+<meta property="og:title" content="Agent SaaS Playbook" />
+<meta property="og:description" content="SaaS sells software. Agent SaaS sells work. The playbook as an installable skill for Claude Code and OpenAI Codex — free, MIT-licensed." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://jenslaufer.com/agent-saas-playbook/" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf7f1; --paper-2:#f3eee4; --ink:#1d1a16; --ink-soft:#544e44;
+    --ink-faint:#8a8275; --line:#e2dac9; --line-2:#d4cab4;
+    --green:#1f7a5a; --green-soft:#e4efe7; --amber:#bd8324; --red:#b23a2e;
+    --shadow:0 1px 2px rgba(29,26,22,.04),0 8px 30px rgba(29,26,22,.06);
+    --serif:"Newsreader",Georgia,"Times New Roman",serif;
+    --sans:"Inter",-apple-system,system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
+    font-size:19px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+  a{color:var(--green)}
+  .kicker{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-faint);margin:64px 0 12px}
+  h1{font-size:44px;line-height:1.12;font-weight:500;margin:0 0 16px;letter-spacing:-.01em}
+  .sub{font-size:21px;color:var(--ink-soft);margin:0 0 40px}
+  h2{font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink-soft);margin:56px 0 16px;
+    border-top:1px solid var(--line);padding-top:24px}
+  .install{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:8px 0}
+  @media(max-width:640px){.install{grid-template-columns:1fr}h1{font-size:34px}}
+  .cmd{background:#211d18;color:#e8e2d6;border-radius:10px;padding:14px 16px;
+    font-family:var(--mono);font-size:12.5px;line-height:1.7;position:relative;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .cmd .lbl{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;color:#9d968a;display:block;margin-bottom:8px}
+  .cmd button{position:absolute;top:10px;right:10px;font-family:var(--sans);font-size:11px;
+    font-weight:600;background:#3a352d;color:#e8e2d6;border:0;border-radius:6px;
+    padding:4px 10px;cursor:pointer}
+  .cmd button:hover{background:#4a4438}
+  ul.what{padding-left:22px;margin:0}
+  ul.what li{margin-bottom:10px}
+  ul.what b{font-weight:600}
+  table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:14px;margin:16px 0}
+  th,td{border:1px solid var(--line-2);padding:7px 10px;text-align:left}
+  th{background:var(--paper-2);font-weight:600}
+  td.num{text-align:center;font-family:var(--mono);font-size:13px}
+  .verdict{background:var(--paper-2);border:1px solid var(--line-2);border-radius:10px;
+    padding:16px 20px;font-size:17px}
+  .verdict b{color:var(--amber)}
+  .tag{font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
+  .optin{background:var(--green-soft);border:1px solid #cfe0d5;border-radius:14px;
+    padding:28px;margin:56px 0 0;box-shadow:var(--shadow)}
+  .optin h2{border:0;padding:0;margin:0 0 6px;color:var(--green)}
+  .optin p{margin:0 0 18px;color:var(--ink-soft);font-size:17px}
+  #captureForm{display:flex;gap:10px;flex-wrap:wrap}
+  #captureForm input[type=email]{flex:1;min-width:220px;font-family:var(--sans);font-size:16px;
+    padding:12px 14px;border:1px solid var(--line-2);border-radius:8px;background:#fff}
+  #captureForm button{font-family:var(--sans);font-size:16px;font-weight:600;color:#fff;
+    background:var(--green);border:0;border-radius:8px;padding:12px 22px;cursor:pointer}
+  #captureForm button:hover{filter:brightness(1.08)}
+  #captureNote{font-family:var(--sans);font-size:14px;color:var(--ink-soft);margin-top:10px;min-height:1.4em}
+  .consent{font-family:var(--sans);font-size:12.5px;color:var(--ink-faint);margin-top:12px}
+  footer{margin:72px 0 48px;border-top:1px solid var(--line);padding-top:20px;
+    font-family:var(--sans);font-size:13px;color:var(--ink-faint)}
+  footer a{color:var(--ink-faint)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="kicker">A free plugin for Claude Code &amp; OpenAI Codex</p>
+  <h1>SaaS sells software.<br>Agent SaaS sells work.</h1>
+  <p class="sub">Greg Isenberg's <a href="https://www.youtube.com/watch?v=83fWzQSWB10">"AI Agents are the new SaaS"</a> playbook as an installable agent skill: score the workflow, spec the agent, anchor the price against labor cost — <em>before</em> you build.</p>
+
+  <div class="install">
+    <div class="cmd"><span class="lbl">Claude Code</span><button data-copy="cc">Copy</button><span id="cc">/plugin marketplace add jenslaufer/agent-saas-playbook<br>/plugin install agent-saas@agent-saas-playbook</span></div>
+    <div class="cmd"><span class="lbl">OpenAI Codex</span><button data-copy="cx">Copy</button><span id="cx">codex plugin marketplace add jenslaufer/agent-saas-playbook<br>codex plugin add agent-saas@agent-saas-playbook</span></div>
+  </div>
+  <p style="font-family:var(--sans);font-size:14px;color:var(--ink-faint)">Free, MIT-licensed, no account. Source on <a href="https://github.com/jenslaufer/agent-saas-playbook">GitHub</a>.</p>
+
+  <h2>What a run gives you</h2>
+  <ul class="what">
+    <li><b>The paycheck first</b> — who gets paid for this work today. No paycheck, no business.</li>
+    <li><b>Evidence-tagged scoring</b> — up to 20 candidate workflows scored on 5 traits; every number labeled <span class="tag">[user data]</span>, <span class="tag">[research]</span> or <span class="tag">[hypothesis]</span>.</li>
+    <li><b>An honest verdict</b> — strong fit / conditional / weak fit. Model guesses alone are capped at <em>conditional</em>.</li>
+    <li><b>The 7-part agent spec</b> — trigger, context, tools, actions, approvals, escalation, success.</li>
+    <li><b>The minimal useful agent</b> — draft-and-approve, triage, coordinator, or bounded action. Not the autonomous-employee demo.</li>
+    <li><b>Pricing anchored to labor cost</b> — plus a 30-day plan and a closing move: name 3 pilot targets and book the calls this week.</li>
+  </ul>
+
+  <h2>From a real run</h2>
+  <p style="font-size:16px;color:var(--ink-soft)">Input: <em>"Could this be an agent business? Missed-call handling for physical therapy clinics"</em> — top three of 20 scored workflows:</p>
+  <table>
+    <tr><th>Workflow</th><th>Freq</th><th>Pain</th><th>Finish line</th><th>Software</th><th>Budget</th><th>Σ</th></tr>
+    <tr><td>Missed-call answering + booking</td><td class="num">5</td><td class="num">5</td><td class="num">5</td><td class="num">3 <span class="tag">[hyp]</span></td><td class="num">5</td><td class="num">23</td></tr>
+    <tr><td>Insurance eligibility checks</td><td class="num">4</td><td class="num">5</td><td class="num">4</td><td class="num">3 <span class="tag">[hyp]</span></td><td class="num">4</td><td class="num">20</td></tr>
+    <tr><td>No-show recovery</td><td class="num">3</td><td class="num">4</td><td class="num">5</td><td class="num">4</td><td class="num">4</td><td class="num">20</td></tr>
+  </table>
+  <div class="verdict"><b>Verdict: conditional.</b> Paycheck and pain are evidenced; the software-access score is a hypothesis until 10 clinics confirm their phone stack. That shadowing evidence would upgrade it to strong fit — the skill tells you exactly what to verify next.</div>
+
+  <div class="optin">
+    <h2>Get the next playbook skills</h2>
+    <p>New episodes become installable skills. Leave your email and you'll hear when the next one ships — nothing else.</p>
+    <form id="captureForm">
+      <input type="email" name="email" required placeholder="you@example.com" autocomplete="email">
+      <input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"
+             style="position:absolute;left:-9999px;height:0;overflow:hidden">
+      <button type="submit">Notify me</button>
+    </form>
+    <p id="captureNote"></p>
+    <p class="consent">By signing up you agree to receive occasional emails about new playbook skills. Unsubscribe anytime, one click.</p>
+  </div>
+
+  <footer>
+    The playbook is Greg Isenberg's, from <a href="https://www.youtube.com/watch?v=83fWzQSWB10">The Startup Ideas Podcast, ep. 348</a>. This plugin distills it — watch the episode.<br>
+    Built by <a href="https://jenslaufer.com">Jens Laufer</a> · MIT · operated by Solytics GmbH · <a href="https://solytics.de/impressum/">Imprint</a> · <a href="https://solytics.de/datenschutz/">Privacy</a>
+  </footer>
+
+</div>
+<script>
+(function(){
+  document.querySelectorAll('.cmd button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var el=document.getElementById(btn.getAttribute('data-copy'));
+      navigator.clipboard.writeText(el.innerText).then(function(){
+        btn.textContent='Copied'; setTimeout(function(){btn.textContent='Copy';},1500);
+      });
+    });
+  });
+
+  /* email capture — wired to Launch Kit public lead-capture */
+  var CAPTURE_URL='https://auth.solytics.de/t/agentsaas/marketing/public/lead-capture';
+  var form=document.getElementById('captureForm'), note=document.getElementById('captureNote');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email=form.email.value.trim(); if(!email) return;
+    var btn=form.querySelector('button'); btn.disabled=true; note.textContent='Sending…';
+    fetch(CAPTURE_URL,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:'',segment:'updates',hp:form.hp.value})})
+    .then(function(res){
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      form.reset(); btn.disabled=false;
+      note.textContent='You’re on the list — talk soon.';
+    })
+    .catch(function(){
+      btn.disabled=false;
+      note.textContent='Something went wrong — please try again.';
+    });
+  });
+})();
+</script>
+</body>
+</html>

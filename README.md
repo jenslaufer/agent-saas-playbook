@@ -35,6 +35,10 @@ codex plugin marketplace add jenslaufer/agent-saas-playbook
 codex plugin add agent-saas
 ```
 
+## Stay in the loop
+
+New episodes become installable skills. Get notified when the next one ships: [jenslaufer.com/agent-saas-playbook](https://jenslaufer.com/agent-saas-playbook/)
+
 ## Use
 
 Ask naturally:
