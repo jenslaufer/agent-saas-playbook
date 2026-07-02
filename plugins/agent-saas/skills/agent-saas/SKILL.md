@@ -15,7 +15,7 @@ Run this BEFORE building. You earn the software by doing the work first.
    - What software the niche already runs on (inbox, phone system, CRM, Stripe, …)
    Stop and ask if any is unknown — never guess the paycheck silently.
 
-2. **List candidate workflows.** Up to 20 jobs people in the niche complain about (or the ones the user names). List them all — no silent skipping.
+2. **List candidate workflows — from evidence, not memory.** Up to 20 jobs people in the niche complain about. Source them from the real world: the user's interviews or operator notes, niche forums, job postings (a posted receptionist role IS paycheck proof). Model-generated candidates are allowed but must be tagged `[hypothesis]`. List them all — no silent skipping.
 
 3. **Score each workflow** on the 5 traits, as a table (1–5 each + total):
    - **Frequency** — hourly beats daily beats weekly
@@ -24,8 +24,9 @@ Run this BEFORE building. You earn the software by doing the work first.
    - **Software access** — touches tools an agent can use and context it can read
    - **Budget owner** — someone already pays for this and can sign
    Sweet spot: repetitive with enough judgment that AI helps. Too simple → basic automation suffices; pure human judgment → version 1 breaks. Flag both.
+   Every score carries its evidence source: `[user data]`, `[research]`, or `[hypothesis]`. A score without real-world evidence is a guess wearing a number — mark it `[hypothesis]`.
 
-4. **Verdict** for the top workflow: **strong fit / conditional / weak fit**. Name the binding constraint (frequency? paycheck? tool access?). Label every assumption with its source (user data vs. estimate).
+4. **Verdict** for the top workflow: **strong fit / conditional / weak fit**. Name the binding constraint (frequency? paycheck? tool access?). **Strong fit requires real-world evidence** for the paycheck and the pain (`[user data]` or `[research]` — a job posting, an interview, a forum thread). On model priors alone, cap the verdict at **conditional** and name the evidence that would upgrade it.
 
 5. **Shadow plan.** Before any prompt or code: watch a human do the job 10–20 real cases (screen recording, narrating). Specify what to extract: what they check before deciding, where mistakes happen, what makes a case easy vs. weird. The hidden detail IS the product. Note: operators can be paid for this.
 
@@ -50,10 +51,12 @@ Run this BEFORE building. You earn the software by doing the work first.
     - **Week 3:** build the wrapper (logs, approvals, settings, analytics)
     - **Week 4:** publish teardowns, turn pilots into proof
     - Audience building runs from day 1.
+    End with the pilot move: ask the user to name **3 concrete pilot targets** — companies or people, by name — and to book those conversations this week. The plan is not the deliverable; the 3 booked conversations are.
     Save to `{project}/marketing/strategy/agent-saas_{slug}.md` if a project context exists, else present in-chat.
 
 ## Notes
 
+- This skill produces a plan, not a business. The money is gated behind selling pilots and distribution — push the user toward the pilot move in step 11, not toward more analysis.
 - This skill validates and specs; it does not build the agent. Hand the spec to your implementation workflow (task spec, backend, frontend).
 - Be honest: say **weak fit** plainly when the scoring shows it. No talking an idea into fitness.
 - Source: Greg Isenberg, Startup Ideas Podcast, "AI Agents are the new SaaS" (July 2026), https://www.youtube.com/watch?v=83fWzQSWB10

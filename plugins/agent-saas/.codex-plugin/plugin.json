@@ -1,6 +1,6 @@
 {
   "name": "agent-saas",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Greg Isenberg's 'AI Agents are the new SaaS' playbook as an agent skill: validate an agent-business idea, score workflows, spec the agent, anchor pricing against labor cost, and get a 30-day plan.",
   "author": {
     "name": "Jens Laufer"
