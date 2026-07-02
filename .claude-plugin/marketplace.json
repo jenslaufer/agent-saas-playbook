@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "agent-saas-playbook",
+  "description": "Greg Isenberg's 'AI Agents are the new SaaS' playbook as an installable agent skill.",
+  "owner": {
+    "name": "Jens Laufer"
+  },
+  "plugins": [
+    {
+      "name": "agent-saas",
+      "description": "Validate and spec an AI-agent business idea: score workflows on 5 traits, write the 7-part agent spec, pick the minimal useful agent shape, anchor pricing against labor cost, get a 30-day plan.",
+      "author": {
+        "name": "Jens Laufer"
+      },
+      "source": "./plugins/agent-saas",
+      "category": "business",
+      "homepage": "https://github.com/jenslaufer/agent-saas-playbook"
+    }
+  ]
+}

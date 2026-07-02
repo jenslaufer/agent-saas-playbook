@@ -1,0 +1,20 @@
+{
+  "name": "agent-saas-playbook",
+  "interface": {
+    "displayName": "Agent SaaS Playbook"
+  },
+  "plugins": [
+    {
+      "name": "agent-saas",
+      "source": {
+        "source": "local",
+        "path": "./plugins/agent-saas"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
